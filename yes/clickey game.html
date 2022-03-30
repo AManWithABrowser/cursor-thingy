@@ -1,0 +1,66 @@
+<script>
+    function update() {
+        document.getElementById('text').value = lolcount;
+        document.title = lolcount + " lols";
+        document.getElementById('ammountAutoClick').innerHTML = "you own " + autoClick + " autoclickers";
+        document.getElementById('costAutoClick').innerHTML = ((autoClick+1) * 12) + " lols"
+    }
+    var lolcount = 0;
+    var autoClick = 0;
+    
+    function timer() {
+        lolcount = lolcount + autoClick;
+        update()
+    }
+    setInterval(timer, 1000)
+</script>
+<html>
+<head><title>lol game</title></head>
+<body>
+
+    <a href=# onclick="add()"><img src="imgs/cursor.jpg"></a>
+    <br><br>
+    you have:
+    <input type="text" id="text" disabled style= text-align:center>
+    <script>
+    function add() {
+        lolcount = lolcount + 1
+      update()
+    }
+    
+    </script>
+    lols
+    <br><br>
+    
+    <button><a href="#" onClick="save()">Save</a></button>
+    <button><a href="#" onClick="load()">Load</a></button>
+    <br><br>
+    
+    <p>buy 1 autoclicker</p>
+    <button><a href="#" onclick="buyAutoclick()"><img src=imgs/cursor.jpg width="40px" height="40px">
+    </a></button>
+    <p id="costAutoClick">12 lols</p>
+    <p id="ammountAutoClick">you own 0 autoclickers</p>
+    <script>
+    function save() {
+    localStorage.setItem("lolcount", lolcount);
+        
+    }
+    function load() {
+    lolcount = localStorage.getItem("lolcount");
+    lolcount = parseInt(lolcount);
+    document.getElementById('text').value = lolcount;
+        document.title = lolcount + " lols";
+        update()
+    }
+    
+    function buyAutoclick() {
+        if (lolcount >=((autoClick) + 1 * 12)) {
+            lolcount = lolcount - ((autoClick+1) * 12);
+            autoClick = autoClick + 1;
+            update()
+        }
+    }
+    </script>
+</body>
+</html>
